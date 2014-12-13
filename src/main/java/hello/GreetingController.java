@@ -7,12 +7,15 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class GreetingController {
 
+    @MessageMapping("/stockticker")
+    @SendTo("/topic/stocks")
+    public Quote stockQuotes(Quote quote) throws Exception {
 
-    @MessageMapping("/hello")
-    @SendTo("/topic/greetings")
-    public Greeting greeting(HelloMessage message) throws Exception {
-        Thread.sleep(3000); // simulated delay
-        return new Greeting("Hello, " + message.getName() + "!");
+        if(quote != null) {
+            return quote;
+        }
+        return null;
+
     }
 
 }

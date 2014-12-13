@@ -20,7 +20,7 @@ import static reactor.event.selector.Selectors.$;
 @ComponentScan
 public class Application implements CommandLineRunner {
 
-    private static final int NUMBER_OF_QUOTES = 3000;
+    private static final int NUMBER_OF_QUOTES = 300;
 
     @Bean
     Environment env() {
@@ -52,6 +52,7 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         reactor.on($("quotes"), receiver);
+
         publisher.publishQuotes(NUMBER_OF_QUOTES);
     }
 
